@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jernih – Hilangkan noise dan perjelas foto dengan autoencoder</title>
+<meta name="description" content="Bersihkan foto berbintik langsung di browser dengan denoising autoencoder. Tanpa unggah ke server.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#beranda"><span class="brand__mark"></span>Jernih</a>
+    <nav class="menu" id="menu" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a>
+      <a href="#cara-kerja">Cara kerja</a>
+      <a href="#studio">Studio</a>
+      <a href="#faq">Tanya jawab</a>
+      <a class="btn btn--sm" href="#studio">Coba sekarang</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero wrap" id="beranda">
+  <div class="hero__text">
+    <p class="eyebrow">Autoencoder, di browser</p>
+    <h1>Foto berbintik atau buram,<br>kembali <em>jernih</em>.</h1>
+    <p class="lead">Jernih melatih jaringan saraf kecil langsung pada fotomu, lalu membuang bintik dan butiran acak atau mempertajam gambar yang buram. Program mengenali sendiri mana yang dibutuhkan. Semua berjalan lokal. Fotomu tidak pernah meninggalkan perangkat.</p>
+    <div class="hero__cta">
+      <a class="btn" href="#studio">Bersihkan foto</a>
+      <a class="link" href="#cara-kerja">Pelajari cara kerjanya</a>
+    </div>
+    <dl class="stats">
+      <div><dt>100%</dt><dd>diproses lokal</dd></div>
+      <div><dt>0</dt><dd>data dikirim</dd></div>
+      <div><dt>~1 mnt</dt><dd>waktu latih</dd></div>
+    </dl>
+  </div>
+  <div class="hero__art" aria-hidden="true">
+    <svg viewBox="0 0 480 520" id="art">
+      <defs><clipPath id="half"><rect x="0" y="0" width="240" height="520"/></clipPath>
+      <clipPath id="frame"><rect width="480" height="520" rx="44"/></clipPath></defs>
+      <g clip-path="url(#frame)">
+        <rect width="480" height="520" fill="#FCF5E8"/>
+        <path d="M250 0C210 60 190 110 215 160c20 40 80 60 120 80 30 15 40 50 55 80 15 30 55 50 90 40V0Z" fill="#BC6F37"/>
+        <ellipse cx="30" cy="150" rx="115" ry="95" fill="#CDA96A"/>
+        <circle cx="120" cy="178" r="20" fill="none" stroke="#6B6A30" stroke-width="2"/>
+        <path d="M0 440C60 360 130 340 200 345c60 5 110 60 170 70 60 10 90-20 110-30V520H0Z" fill="#6B6A30"/>
+        <path d="M0 300C90 285 150 330 190 400s100 100 170 70c50-20 80-45 120-60" fill="none" stroke="#8E8946" stroke-width="2.5"/>
+        <g id="specks" clip-path="url(#half)"></g>
+      </g>
+      <line x1="240" y1="0" x2="240" y2="520" stroke="#FCF5E8" stroke-width="3"/>
+      <circle cx="240" cy="260" r="18" fill="#FCF5E8"/><path d="M234 260h12M240 254v12" stroke="#6B6A30" stroke-width="0"/>
+      <path d="M233 260l5-5v10zM247 260l-5-5v10z" fill="#6B6A30"/>
+    </svg>
+    <span class="tag tag--l">Sebelum</span><span class="tag tag--r">Sesudah</span>
+  </div>
+</section>
