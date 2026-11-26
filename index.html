@@ -74,3 +74,50 @@
   </div>
   <p class="note">Untuk mode hilangkan noise, potongan foto diberi bintik acak lalu model belajar merekonstruksi aslinya. Untuk mode perjelas, potongan foto di-blur lagi lalu model (dengan skip connection) belajar membalik blur itu, dan hasilnya diterapkan ke foto aslinya. Pelatihan memakai loss L1 yang tahan terhadap piksel ekstrem, dan potongan foto diberi bintik tambahan secara acak supaya model belajar mengabaikannya. Tidak diperlukan foto bersih sebagai pasangan.</p>
 </section>
+
+  <section class="studio" id="studio">
+  <div class="wrap">
+    <div class="sec__head"><p class="eyebrow eyebrow--light">Studio</p><h2>Coba dengan fotomu</h2></div>
+    <div class="panel">
+      <div class="controls">
+        <label class="btn btn--sand">Pilih foto<input id="file" type="file" accept="image/*" hidden></label>
+        <button class="btn btn--ghost" id="demo" type="button">Pakai contoh</button>
+        <div class="field"><span>Kepadatan bintik</span><input id="dens" type="range" min="1" max="15" value="6"><button class="btn btn--ghost btn--sm" id="speck" type="button">Tambah bintik</button></div>
+        <div class="field"><span>Mode</span><select id="mode"><option value="denoise">Hilangkan noise</option><option value="sharpen">Perjelas gambar</option></select></div>
+        <div class="field"><span>Kekuatan perjelas <b id="av">1.0</b></span><input id="alpha" type="range" min="0.5" max="2" step="0.1" value="1"></div>
+        <div class="field"><span>Langkah latih <b id="sv">300</b></span><input id="steps" type="range" min="100" max="600" step="50" value="300"></div>
+        <button class="btn" id="go" type="button" disabled>Proses foto</button>
+      </div>
+      <div class="progress"><div id="prog"></div></div>Foto diperkecil maksimal 768 px agar proses tetap lancar.
+      <p class="status" id="status">Pilih foto atau pakai contoh. Program akan mendeteksi apakah fotomu bernoise atau buram. </p>
+
+      <div class="stage" id="stage">
+        <canvas id="src" width="256" height="256"></canvas>
+        <canvas id="out" width="256" height="256"></canvas>
+        <div class="divider" id="divider"></div>
+        <span class="tag tag--l">Sebelum</span><span class="tag tag--r">Sesudah</span>
+        <input class="cmp" id="cmp" type="range" min="0" max="100" value="50" aria-label="Geser perbandingan">
+      </div>
+      <div class="actions"><button class="btn btn--sand" id="dl" type="button" disabled>Unduh hasil (PNG)</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="faq">
+  <div class="sec__head"><p class="eyebrow">Tanya jawab</p><h2>Yang sering ditanyakan</h2></div>
+  <div class="faq">
+    <details><summary>Apakah fotoku diunggah ke server?</summary><p>Tidak. Pelatihan dan pembersihan berjalan sepenuhnya di browser memakai TensorFlow.js.</p></details>
+    <details><summary>Seberapa jelas hasil mode perjelas?</summary><p>Model hanya belajar dari fotomu sendiri, jadi ia mempertajam tepi dan tekstur yang masih tersisa. Detail yang benar-benar hilang akibat blur parah tidak bisa dikembalikan sepenuhnya.</p></details>
+    <details><summary>Kenapa hasilnya terlihat lebih halus?</summary><p>Model kecil dan dilatih singkat, jadi detail sangat halus bisa ikut meredup. Tambah langkah latih untuk hasil yang lebih tajam.</p></details>
+    <details><summary>Jenis noise apa yang paling cocok?</summary><p>Bintik acak dan butiran tersebar, seperti noise garam dan merica. Noise yang membentuk pola teratur kurang cocok.</p></details>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap foot__in"><span class="brand"><span class="brand__mark"></span>Jernih</span><small>Dibangun dengan TensorFlow.js. Semua proses berjalan di perangkatmu.</small></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+
