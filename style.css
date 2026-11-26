@@ -59,3 +59,68 @@ p{margin:0}
 .hero__art svg{width:100%;height:auto;display:block}
 .tag{position:absolute;top:16px;padding:5px 12px;border-radius:999px;background:var(--cream);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;z-index:2}
 .tag--l{left:16px}.tag--r{right:16px}
+
+/* sections */
+.sec{padding:96px 0}
+.sec__head{margin-bottom:48px;max-width:720px}
+.sec__head .lead{margin-top:18px}
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.flow article{padding:32px;border-radius:var(--r);background:#f3e8d1;border:1px solid var(--line);transition:transform .3s}
+.flow article:hover{transform:translateY(-6px)}
+.flow__core{background:var(--forest)!important;color:var(--cream);margin-top:28px}
+.flow__core .num{color:var(--sand)}
+.num{display:block;font:italic 400 20px var(--serif);color:var(--clay);margin-bottom:40px}
+.flow p{margin-top:12px;opacity:.85;font-size:16px}
+.note{margin-top:32px;max-width:70ch;padding-left:20px;border-left:3px solid var(--sand);color:rgba(44,43,21,.75)}
+
+/* studio */
+.studio{background:var(--forest);color:var(--cream);padding:96px 0;border-radius:44px 44px 0 0;position:relative}
+.panel{background:rgba(252,245,232,.07);border:1px solid rgba(252,245,232,.16);border-radius:30px;padding:28px}
+.controls{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.field{display:flex;align-items:center;gap:12px;font-size:14px}
+.field b{color:var(--sand)}
+input[type=range]{accent-color:var(--sand);width:140px}
+.progress{height:6px;border-radius:9px;background:rgba(252,245,232,.15);margin:22px 0 10px;overflow:hidden}
+.progress div{height:100%;width:0;background:var(--sand);transition:width .15s}
+.status{font-size:14px;color:rgba(252,245,232,.75);min-height:22px}
+.stage{position:relative;margin:20px auto 0;width:100%;max-width:640px;border-radius:18px;overflow:hidden;background:var(--cream);line-height:0;user-select:none}
+.stage canvas{width:100%;height:auto;display:block}
+#out{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--cream);box-shadow:0 0 0 1px rgba(0,0,0,.15);pointer-events:none}
+.divider::after{content:"";position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px;border-radius:50%;background:var(--cream);border:3px solid var(--clay)}
+.stage .tag{color:var(--ink);line-height:1.4}
+.cmp{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.actions{text-align:center;margin-top:22px}
+
+/* faq */
+.faq{max-width:760px}
+.faq details{border-top:1px solid var(--line);padding:22px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font:400 24px var(--serif);list-style:none;display:flex;justify-content:space-between;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--clay);font-size:28px;line-height:1;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin-top:14px;color:rgba(44,43,21,.75)}
+.foot{background:var(--ink);color:var(--cream);padding:34px 0}
+.foot__in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.foot small{opacity:.65}
+.foot .brand__mark{box-shadow:8px 6px 0 -2px var(--moss)}
+
+/* responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding-top:32px}
+  .hero__art{max-width:440px}
+  .flow{grid-template-columns:1fr}.flow__core{margin-top:0}
+  .burger{display:block}
+  .menu{position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;padding:8px 20px 22px;background:var(--cream);border-bottom:1px solid var(--line);transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s}
+  .menu.open{transform:none;opacity:1;pointer-events:auto}
+  .menu a:not(.btn){padding:14px 0;width:100%;border-bottom:1px solid var(--line)}
+  .menu .btn{margin-top:16px}
+  .stats{gap:24px}
+  .studio{border-radius:32px 32px 0 0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* mode select */
+.field select{font:inherit;padding:.45rem .7rem;border-radius:10px;border:1px solid rgba(252,245,232,.35);background:transparent;color:inherit}
+.field select option{color:#2c2b15}
