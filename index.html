@@ -62,3 +62,15 @@
     <span class="tag tag--l">Sebelum</span><span class="tag tag--r">Sesudah</span>
   </div>
 </section>
+
+  <section class="sec wrap" id="cara-kerja">
+  <div class="sec__head"><p class="eyebrow">Cara kerja</p><h2>Memampatkan, lalu membangun ulang</h2>
+  <p class="lead">Autoencoder dipaksa melewatkan gambar lewat saluran sempit. Hanya struktur penting yang muat, sedangkan bintik acak tidak.</p></div>
+
+  <div class="flow">
+    <article><span class="num">01</span><h3>Encoder</h3><p>Lapisan konvolusi dan pooling meringkas foto menjadi representasi kecil berisi tepi, warna, dan tekstur utama.</p></article>
+    <article class="flow__core"><span class="num">02</span><h3>Bottleneck</h3><p>Ruang paling sempit. Bintik acak tidak punya pola yang bisa dipelajari, sehingga terbuang di sini.</p></article>
+    <article><span class="num">03</span><h3>Decoder</h3><p>Upsampling dan konvolusi menyusun ulang gambar dari ringkasan tadi menjadi versi yang lebih bersih.</p></article>
+  </div>
+  <p class="note">Untuk mode hilangkan noise, potongan foto diberi bintik acak lalu model belajar merekonstruksi aslinya. Untuk mode perjelas, potongan foto di-blur lagi lalu model (dengan skip connection) belajar membalik blur itu, dan hasilnya diterapkan ke foto aslinya. Pelatihan memakai loss L1 yang tahan terhadap piksel ekstrem, dan potongan foto diberi bintik tambahan secara acak supaya model belajar mengabaikannya. Tidak diperlukan foto bersih sebagai pasangan.</p>
+</section>
