@@ -69,3 +69,28 @@ function speckle() {
   sctx.putImageData(d, 0, 0); recommend('Bintik ditambahkan. ');
 }
 $('speck').onclick = () => { if (!$('go').disabled) speckle(); };
+
+/* ---------- analisis otomatis: noise atau buram? ---------- */
+function analyze() {
+  const w = src.width, h = src.height, p = sctx.getImageData(0, 0, w, h).data, g = new Float32Array(w * h);
+  for (let i = 0; i < g.length; i++) g[i] = .299 * p[4 * i] + .587 * p[4 * i + 1] + .114 * p[4 * i + 2];
+  let bad = 0, n = 0, s = 0, s2 = 0;
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+    const i = y * w + x;
+    const nb = [g[i - 1], g[i + 1], g[i - w], g[i + w], g[i - w - 1], g[i - w + 1], g[i + w - 1], g[i + w + 1]].sort((a, b) => a - b);
+    if (Math.abs(g[i] - (nb[3] + nb[4]) / 2) > 70) bad++;      // piksel menyimpang jauh dari tetangganya = bintik
+    const lap = 4 * g[i] - g[i - 1] - g[i + 1] - g[i - w] - g[i + w];
+    s += lap; s2 += lap * lap; n++;                             // variansi Laplacian = ukuran ketajaman
+  }
+  return { noise: bad / n, sharp: s2 / n - (s / n) ** 2 };
+}
+
+function recommend(pre = '') {
+  const a = analyze(), noisy = a.noise > 0.01, blurry = a.sharp < 100;
+  $('mode').value = noisy ? 'denoise' : 'sharpen';
+  setStatus(pre + (noisy
+    ? `Terdeteksi noise (${(a.noise * 100).toFixed(1)}% piksel). Disarankan: hilangkan noise.`
+    : blurry ? 'Tidak ada noise, gambar tampak buram. Disarankan: perjelas gambar.'
+             : 'Tidak ada noise dan gambar sudah cukup tajam. Kamu tetap bisa mempertajamnya lebih lanjut.')
+    + ' Ganti mode bila perlu, lalu klik "Proses foto".');
+}
